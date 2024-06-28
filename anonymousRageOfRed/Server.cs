@@ -1,19 +1,30 @@
-﻿using System.Collections.Generic;
-using System.Net.Sockets;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
-using System;
 
 public class Server
 {
     private List<TcpClient> clients = new List<TcpClient>();
+    private const string LogFilePath = "Logs/messageLog.txt";
+
+    public Server()
+    {
+        // Log klasörünü oluştur
+        Directory.CreateDirectory("Logs");
+    }
 
     public async Task Start()
     {
         TcpListener listener = new TcpListener(IPAddress.Any, 5000);
         listener.Start();
         Console.WriteLine("Sunucu başlatıldı...");
+
+        // Önceki mesajları yükle
+        LoadMessagesFromLog();
 
         while (true)
         {
@@ -35,12 +46,20 @@ public class Server
             string clientId = await ReceiveClientId(stream);
             Console.WriteLine($"ID {clientId} bağlandı.");
 
+            // İstemciye logu gönder
+            await SendLogToClient(stream);
+
             while ((byteCount = await stream.ReadAsync(buffer, 0, buffer.Length)) != 0)
             {
                 string messageContent = Encoding.UTF8.GetString(buffer, 0, byteCount);
-                Console.WriteLine($"[{clientId}] {messageContent}");
+                string message = $"[{clientId}] {messageContent}";
+                Console.WriteLine(message);
 
-                BroadcastMessage($"[{clientId}] {messageContent}");
+                // Mesajı log dosyasına kaydet
+                LogMessage(message);
+
+                // Diğer clientlara mesajı iletmek için
+                BroadcastMessage(message);
             }
 
             clients.Remove(client);
@@ -82,6 +101,43 @@ public class Server
             catch (Exception ex)
             {
                 Console.WriteLine($"Hata: {ex.Message}");
+            }
+        }
+    }
+
+    private void LogMessage(string message)
+    {
+        try
+        {
+            File.AppendAllText(LogFilePath, message + Environment.NewLine);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Loglama hatası: {ex.Message}");
+        }
+    }
+
+    private void LoadMessagesFromLog()
+    {
+        if (File.Exists(LogFilePath))
+        {
+            string[] messages = File.ReadAllLines(LogFilePath);
+            foreach (var message in messages)
+            {
+                Console.WriteLine(message);
+            }
+        }
+    }
+
+    private async Task SendLogToClient(NetworkStream stream)
+    {
+        if (File.Exists(LogFilePath))
+        {
+            string[] messages = File.ReadAllLines(LogFilePath);
+            foreach (var message in messages)
+            {
+                byte[] buffer = Encoding.UTF8.GetBytes(message + Environment.NewLine);
+                await stream.WriteAsync(buffer, 0, buffer.Length);
             }
         }
     }

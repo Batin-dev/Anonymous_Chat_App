@@ -1,7 +1,7 @@
-﻿using System.Net.Sockets;
+﻿using System;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
-using System;
 
 public class Client
 {
@@ -11,19 +11,21 @@ public class Client
     public async Task Start()
     {
         client = new TcpClient();
-        await client.ConnectAsync("127.0.0.1", 5000);
+        await client.ConnectAsync("192.168.1.45", 5000);
 
         NetworkStream stream = client.GetStream();
         Console.WriteLine("Sunucuya bağlandı...");
 
-        // Rastgele 5 basamaklı ID oluştur
-        clientId = GenerateClientId();
+        clientId = new Random().Next(10000, 99999).ToString();
 
-        // ID'yi server'e gönder
-        SendMessage($"ID:{clientId}");
+        // Client ID'sini gönder
+        await SendClientId(stream);
 
-        // Mesajları dinlemeye başla
-        Task.Run(() => ReceiveMessages(stream));
+        // Logları al
+        Task.Run(() => ReceiveMessages(stream, true));
+
+        // Mesajları al
+        Task.Run(() => ReceiveMessages(stream, false));
 
         while (true)
         {
@@ -33,26 +35,21 @@ public class Client
             if (messageContent.ToLower() == "exit")
                 break;
 
-            SendMessage(messageContent);
+            byte[] buffer = Encoding.UTF8.GetBytes(messageContent);
+            await stream.WriteAsync(buffer, 0, buffer.Length);
         }
 
         client.Close();
     }
 
-    private void SendMessage(string message)
+    private async Task SendClientId(NetworkStream stream)
     {
-        try
-        {
-            byte[] buffer = Encoding.UTF8.GetBytes(message);
-            client.GetStream().Write(buffer, 0, buffer.Length);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Hata: {ex.Message}");
-        }
+        string message = $"ID:{clientId}";
+        byte[] buffer = Encoding.UTF8.GetBytes(message);
+        await stream.WriteAsync(buffer, 0, buffer.Length);
     }
 
-    private async Task ReceiveMessages(NetworkStream stream)
+    private async Task ReceiveMessages(NetworkStream stream, bool isLog)
     {
         byte[] buffer = new byte[1024];
         int byteCount;
@@ -60,13 +57,14 @@ public class Client
         while ((byteCount = await stream.ReadAsync(buffer, 0, buffer.Length)) != 0)
         {
             string message = Encoding.UTF8.GetString(buffer, 0, byteCount);
-            Console.WriteLine(message);
+            if (isLog)
+            {
+                Console.WriteLine("You: " + message);
+            }
+            else
+            {
+                Console.WriteLine(">" + message);
+            }
         }
-    }
-
-    private string GenerateClientId()
-    {
-        Random random = new Random();
-        return random.Next(10000, 100000).ToString();
     }
 }
