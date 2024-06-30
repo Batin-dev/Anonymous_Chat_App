@@ -3,11 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\batin\\source\\repos\\anonymousRageOfRed\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9D87B195-D280-42B5-A0A0-62A57CA94D1D}|anonymousRageOfRed\\anonymousRageOfRed.csproj|C:\\Users\\batin\\source\\repos\\anonymousRageOfRed\\anonymousrageofred\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9D87B195-D280-42B5-A0A0-62A57CA94D1D}|anonymousRageOfRed\\anonymousRageOfRed.csproj|solutionrelative:anonymousrageofred\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9D87B195-D280-42B5-A0A0-62A57CA94D1D}|anonymousRageOfRed\\anonymousRageOfRed.csproj|c:\\users\\batin\\source\\repos\\anonymousrageofred\\anonymousrageofred\\server.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9D87B195-D280-42B5-A0A0-62A57CA94D1D}|anonymousRageOfRed\\anonymousRageOfRed.csproj|C:\\Users\\batin\\source\\repos\\anonymousRageOfRed\\anonymousrageofred\\server.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9D87B195-D280-42B5-A0A0-62A57CA94D1D}|anonymousRageOfRed\\anonymousRageOfRed.csproj|solutionrelative:anonymousrageofred\\server.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -17,6 +13,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{9D87B195-D280-42B5-A0A0-62A57CA94D1D}|anonymousRageOfRed\\anonymousRageOfRed.csproj|C:\\Users\\batin\\source\\repos\\anonymousRageOfRed\\anonymousrageofred\\message.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9D87B195-D280-42B5-A0A0-62A57CA94D1D}|anonymousRageOfRed\\anonymousRageOfRed.csproj|solutionrelative:anonymousrageofred\\message.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D87B195-D280-42B5-A0A0-62A57CA94D1D}|anonymousRageOfRed\\anonymousRageOfRed.csproj|c:\\users\\batin\\source\\repos\\anonymousrageofred\\anonymousrageofred\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D87B195-D280-42B5-A0A0-62A57CA94D1D}|anonymousRageOfRed\\anonymousRageOfRed.csproj|solutionrelative:anonymousrageofred\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,11 +26,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "Message.cs",
               "DocumentMoniker": "C:\\Users\\batin\\source\\repos\\anonymousRageOfRed\\anonymousRageOfRed\\Message.cs",
               "RelativeDocumentMoniker": "anonymousRageOfRed\\Message.cs",
@@ -43,33 +43,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Client.cs",
               "DocumentMoniker": "C:\\Users\\batin\\source\\repos\\anonymousRageOfRed\\anonymousRageOfRed\\Client.cs",
               "RelativeDocumentMoniker": "anonymousRageOfRed\\Client.cs",
               "ToolTip": "C:\\Users\\batin\\source\\repos\\anonymousRageOfRed\\anonymousRageOfRed\\Client.cs",
               "RelativeToolTip": "anonymousRageOfRed\\Client.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAsAAAA",
+              "ViewState": "AQIAAD8AAAAAAAAAAAAAABkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-27T13:59:00.713Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Server.cs",
               "DocumentMoniker": "C:\\Users\\batin\\source\\repos\\anonymousRageOfRed\\anonymousRageOfRed\\Server.cs",
               "RelativeDocumentMoniker": "anonymousRageOfRed\\Server.cs",
               "ToolTip": "C:\\Users\\batin\\source\\repos\\anonymousRageOfRed\\anonymousRageOfRed\\Server.cs",
               "RelativeToolTip": "anonymousRageOfRed\\Server.cs",
-              "ViewState": "AQIAAHgAAAAAAAAAAAAAAJAAAAAAAAAA",
+              "ViewState": "AQIAAFcAAAAAAAAAAAAAAC4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-27T13:58:05.641Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\batin\\source\\repos\\anonymousRageOfRed\\anonymousRageOfRed\\Program.cs",
               "RelativeDocumentMoniker": "anonymousRageOfRed\\Program.cs",

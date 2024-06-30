@@ -18,13 +18,12 @@ public class Client
 
         clientId = new Random().Next(10000, 99999).ToString();
 
-        // Client ID'sini gönder
+
         await SendClientId(stream);
 
-        // Logları al
         Task.Run(() => ReceiveMessages(stream, true));
 
-        // Mesajları al
+
         Task.Run(() => ReceiveMessages(stream, false));
 
         while (true)

@@ -13,7 +13,6 @@ public class Server
 
     public Server()
     {
-        // Log klasörünü oluştur
         Directory.CreateDirectory("Logs");
     }
 
@@ -23,7 +22,6 @@ public class Server
         listener.Start();
         Console.WriteLine("Sunucu başlatıldı...");
 
-        // Önceki mesajları yükle
         LoadMessagesFromLog();
 
         while (true)
@@ -46,7 +44,7 @@ public class Server
             string clientId = await ReceiveClientId(stream);
             Console.WriteLine($"ID {clientId} bağlandı.");
 
-            // İstemciye logu gönder
+
             await SendLogToClient(stream);
 
             while ((byteCount = await stream.ReadAsync(buffer, 0, buffer.Length)) != 0)
@@ -55,10 +53,8 @@ public class Server
                 string message = $"[{clientId}] {messageContent}";
                 Console.WriteLine(message);
 
-                // Mesajı log dosyasına kaydet
                 LogMessage(message);
 
-                // Diğer clientlara mesajı iletmek için
                 BroadcastMessage(message);
             }
 
