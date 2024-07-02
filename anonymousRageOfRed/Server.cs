@@ -18,7 +18,7 @@ public class Server
 
     public async Task Start()
     {
-        TcpListener listener = new TcpListener(IPAddress.Any, 5000);
+        TcpListener listener = new TcpListener(IPAddress.Parse("172.26.4.111"), 80);
         listener.Start();
         Console.WriteLine("Sunucu başlatıldı...");
 
@@ -43,7 +43,6 @@ public class Server
 
             string clientId = await ReceiveClientId(stream);
             Console.WriteLine($"ID {clientId} bağlandı.");
-
 
             await SendLogToClient(stream);
 

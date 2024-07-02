@@ -11,19 +11,15 @@ public class Client
     public async Task Start()
     {
         client = new TcpClient();
-        await client.ConnectAsync("192.168.1.45", 5000);
+        await client.ConnectAsync("172.26.4.111", 80);
 
         NetworkStream stream = client.GetStream();
         Console.WriteLine("Sunucuya bağlandı...");
 
         clientId = new Random().Next(10000, 99999).ToString();
-
-
         await SendClientId(stream);
 
         Task.Run(() => ReceiveMessages(stream, true));
-
-
         Task.Run(() => ReceiveMessages(stream, false));
 
         while (true)
